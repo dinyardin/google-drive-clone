@@ -14,6 +14,9 @@ export default function Signup() {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+
+      //Also dont forget to validate passwords are at least 6 chars long, as otherwise firebase wont allow user creation.
+      //WEAK_PASSWORD : Password should be at least 6 characters (Actual error from firebase)
     }
 
     try {
