@@ -6,12 +6,16 @@ import Login from "./authentication/Login";
 import PrivateRoute from "./authentication/PrivateRoute";
 import ForgotPassword from "./authentication/ForgotPassword";
 import UpdateProfile from "./authentication/UpdateProfile";
+import Dahsboard from "./google-drive/Dahsboard";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Switch>
+          {/* Drive Routes */}
+          <PrivateRoute exact path="/" component={Dahsboard} />
+
           {/* User Profile Routes */}
           <PrivateRoute path="/user" component={Profile} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
