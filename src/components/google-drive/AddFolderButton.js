@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+import { database } from "../../firebase";
+import { useAuth } from "../../contexts/AuthContext";
 
-export default function AddFolderButton() {
+export default function AddFolderButton({ currentFolder }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const { currentUser } = useAuth();
 
   function openModal() {
     setOpen(true);
@@ -19,8 +22,18 @@ export default function AddFolderButton() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    //create a folder in firestore
+    if (currentFolder == null) {
+      return;
+    }
 
+    //create a folder in firestore
+    database.folders.add({
+      name: name,
+      userId: currentUser.uid,
+      createdAt: database.getCurrentTimestamp(),
+      parentId: currentFolder.id,
+      //path,
+    });
     setName("");
     closeModal();
   }

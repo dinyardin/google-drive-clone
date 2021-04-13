@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyBQDWLX1_sDuIkYVAYCcZkjGuwMRJpOFcE",
@@ -11,4 +12,15 @@ const app = firebase.initializeApp({
 });
 
 export const auth = app.auth();
+
+// We could export our entire firestore as below
+export const firestore = app.firestore();
+
+//or we can export the specific collection, in this case "folders" and "files"
+export const database = {
+  folders: firestore.collection("folders"),
+  files: firestore.collection("files"),
+  getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
+};
+
 export default app;
