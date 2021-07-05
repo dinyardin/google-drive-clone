@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
 import { database } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
+import { ROOT_FOLDER } from "../../hooks/useFolder";
 
 export default function AddFolderButton({ currentFolder }) {
   const [open, setOpen] = useState(false);
@@ -26,13 +27,19 @@ export default function AddFolderButton({ currentFolder }) {
       return;
     }
 
+    const path = [...currentFolder.path];
+
+    if (currentFolder !== ROOT_FOLDER) {
+      path.push({ name: currentFolder.name, id: currentFolder.id });
+    }
+
     //create a folder in firestore
     database.folders.add({
       name: name,
       userId: currentUser.uid,
       createdAt: database.getCurrentTimestamp(),
       parentId: currentFolder.id,
-      //path,
+      path: path,
     });
     setName("");
     closeModal();

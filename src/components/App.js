@@ -16,6 +16,9 @@ function App() {
           {/* Drive Routes */}
           <PrivateRoute exact path="/" component={Dahsboard} />
 
+          {/* Folder Routes */}
+          <PrivateRoute exact path="/folder/:folderId" component={Dahsboard} />
+
           {/* User Profile Routes */}
           <PrivateRoute path="/user" component={Profile} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />

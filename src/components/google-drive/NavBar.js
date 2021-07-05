@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function NavBarComponent() {
   return (
-    <Navbar bg="primary" expand="xl">
+    <Navbar bg="light" expand="lg">
       <Navbar.Brand as={Link} to="/">
-        Danix Drive
+        Google Drive Clone
       </Navbar.Brand>
       <Nav>
         <Nav.Link as={Link} to="/user">
