@@ -79,13 +79,28 @@ export default function AddFileButton({ currentFolder }) {
 
         //this is a good time to store the file in firestore
         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-          database.files.add({
-            url: url,
-            name: file.name,
-            createdAt: database.getCurrentTimestamp(),
-            folderId: currentFolder.id,
-            userId: currentUser.uid,
-          });
+          //first check if the uploading file is already exist
+          database.files
+            .where("name", "==", file.name)
+            .where("userId", "==", currentUser.uid)
+            .where("folderId", "==", currentFolder.id)
+            .get()
+            .then((existingFiles) => {
+              const existingFile = existingFiles.docs[0];
+              if (existingFile) {
+                //if file is already exist, just update the url
+                existingFile.ref.update({ url: url });
+              } else {
+                // otherwise proceed to upload it
+                database.files.add({
+                  url: url,
+                  name: file.name,
+                  createdAt: database.getCurrentTimestamp(),
+                  folderId: currentFolder.id,
+                  userId: currentUser.uid,
+                });
+              }
+            });
         });
       }
     );
