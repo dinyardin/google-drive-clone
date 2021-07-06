@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyBQDWLX1_sDuIkYVAYCcZkjGuwMRJpOFcE",
@@ -10,8 +11,6 @@ const app = firebase.initializeApp({
   messagingSenderId: "139754392370",
   appId: "1:139754392370:web:7faf2161ae08e7d774652b",
 });
-
-export const auth = app.auth();
 
 // We could export our entire firestore as below
 export const firestore = app.firestore();
@@ -28,5 +27,8 @@ export const database = {
   },
   getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
 };
+
+export const storage = app.storage();
+export const auth = app.auth();
 
 export default app;
