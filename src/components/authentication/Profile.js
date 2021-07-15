@@ -18,6 +18,11 @@ export default function Profile() {
       setError("Failed to logout");
     }
   }
+
+  function handleBack() {
+    history.push("/");
+  }
+
   return (
     <CenteredContainer>
       <Card>
@@ -31,7 +36,10 @@ export default function Profile() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Button varient="link" onClick={handleLogout}>
+        <Button varient="link" onClick={handleBack}>
+          Back
+        </Button>
+        <Button varient="link" className="ml-5" onClick={handleLogout}>
           Log Out
         </Button>
       </div>
