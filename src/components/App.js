@@ -7,6 +7,7 @@ import PrivateRoute from "./authentication/PrivateRoute";
 import ForgotPassword from "./authentication/ForgotPassword";
 import UpdateProfile from "./authentication/UpdateProfile";
 import Dahsboard from "./google-drive/Dahsboard";
+import "./icons/icons";
 
 function App() {
   return (
