@@ -1,5 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { auth } from "../firebase";
+import {
+  auth,
+  GoogleAuthProvider,
+  FaceBookProver,
+  GithubAuthProvider,
+} from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -35,6 +40,34 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password);
   }
 
+  const loginWithSocialMedia = async (type) => {
+    console.log("type---->", type);
+    try {
+      let providerObj = null;
+      switch (type) {
+        case "google":
+          providerObj = GoogleAuthProvider;
+
+          break;
+        case "facebook":
+          providerObj = FaceBookProver;
+          break;
+        case "github":
+          providerObj = GithubAuthProvider;
+          break;
+      }
+
+      const response = await auth.signInWithPopup(providerObj);
+
+      if (!response) {
+        console.log("response--->", response);
+        return;
+      }
+    } catch (error) {
+      console.log("error-->", error);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -51,6 +84,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    loginWithSocialMedia,
   };
 
   return (

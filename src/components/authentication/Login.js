@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, loginWithSocialMedia } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -22,6 +22,16 @@ export default function Login() {
       await login(emailRef.current.value, passwordRef.current.value);
       history.push("/");
     } catch {
+      setError("Failed to sign in");
+    }
+    setLoading(false);
+  }
+
+  async function handleSocialMediaLogin(type) {
+    try {
+      await loginWithSocialMedia(type);
+      history.push("/");
+    } catch (error) {
       setError("Failed to sign in");
     }
     setLoading(false);
@@ -58,6 +68,7 @@ export default function Login() {
             <hr />
             <div className="mt-4 mb-4 d-flex justify-content-center">
               <FontAwesomeIcon
+                onClick={() => handleSocialMediaLogin("google")}
                 style={{ cursor: "pointer" }}
                 className="mr-3"
                 icon={["fab", "google"]}
@@ -65,6 +76,7 @@ export default function Login() {
                 color="Tomato"
               />
               <FontAwesomeIcon
+                onClick={() => handleSocialMediaLogin("facebook")}
                 style={{ cursor: "pointer" }}
                 className="mr-3"
                 icon={["fab", "facebook-f"]}
@@ -72,6 +84,7 @@ export default function Login() {
                 color="#3b5998"
               />
               <FontAwesomeIcon
+                onClick={() => handleSocialMediaLogin("github")}
                 style={{ cursor: "pointer" }}
                 icon={["fab", "github"]}
                 size="lg"

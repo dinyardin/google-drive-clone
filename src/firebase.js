@@ -12,6 +12,10 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_APP_ID,
 });
 
+export const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export const FaceBookProver = new firebase.auth.FacebookAuthProvider();
+export const GithubAuthProvider = new firebase.auth.GithubAuthProvider();
+
 // We could export our entire firestore as below
 export const firestore = app.firestore();
 
