@@ -55,6 +55,8 @@ export function AuthProvider({ children }) {
         case "github":
           providerObj = GithubAuthProvider;
           break;
+        default:
+          providerObj = GoogleAuthProvider;
       }
 
       const response = await auth.signInWithPopup(providerObj);
