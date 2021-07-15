@@ -4,12 +4,12 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyBQDWLX1_sDuIkYVAYCcZkjGuwMRJpOFcE",
-  authDomain: "drive-clone-9da24.firebaseapp.com",
-  projectId: "drive-clone-9da24",
-  storageBucket: "drive-clone-9da24.appspot.com",
-  messagingSenderId: "139754392370",
-  appId: "1:139754392370:web:7faf2161ae08e7d774652b",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 });
 
 // We could export our entire firestore as below
