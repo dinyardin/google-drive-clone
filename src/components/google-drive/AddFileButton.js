@@ -47,7 +47,7 @@ export default function AddFileButton({ currentFolder }) {
         const progress = snapshot.bytesTransferred / snapshot.totalBytes;
         setUploadingFiles((prevUploadingFiles) => {
           return prevUploadingFiles.map((uploadFile) => {
-            if (uploadFile.id == id) {
+            if (uploadFile.id === id) {
               return { ...uploadFile, progress: progress };
             }
 
@@ -59,7 +59,7 @@ export default function AddFileButton({ currentFolder }) {
         // 2nd function tells us about errors
         setUploadingFiles((prevUploadingFiles) => {
           return prevUploadingFiles.map((uploadFile) => {
-            if (uploadFile.id == id) {
+            if (uploadFile.id === id) {
               return { ...uploadFile, error: true };
             }
 
