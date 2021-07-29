@@ -26,7 +26,7 @@ export default function Signup() {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      history.push(process.env.REACT_APP_BASE_HREF + "/");
     } catch {
       setError("Failed to create an account");
     }
@@ -62,7 +62,8 @@ export default function Signup() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/login">Log In</Link>
+        Already have an account?{" "}
+        <Link to={process.env.REACT_APP_BASE_HREF + "/login"}>Log In</Link>
       </div>
     </CenteredContainer>
   );

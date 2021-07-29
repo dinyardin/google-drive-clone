@@ -8,7 +8,7 @@ export default function Folder({ folder }) {
   return (
     <Button
       to={{
-        pathname: `/folder/${folder.id}`,
+        pathname: process.env.REACT_APP_BASE_HREF + `/folder/${folder.id}`,
         state: { folder: folder },
       }}
       variant="outline-dark"

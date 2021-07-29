@@ -15,19 +15,42 @@ function App() {
       <AuthProvider>
         <Switch>
           {/* Drive Routes */}
-          <PrivateRoute exact path="/" component={Dahsboard} />
+          <PrivateRoute
+            exact
+            path={process.env.REACT_APP_BASE_HREF + "/"}
+            component={Dahsboard}
+          />
 
           {/* Folder Routes */}
-          <PrivateRoute exact path="/folder/:folderId" component={Dahsboard} />
+          <PrivateRoute
+            exact
+            path={process.env.REACT_APP_BASE_HREF + "/folder/:folderId"}
+            component={Dahsboard}
+          />
 
           {/* User Profile Routes */}
-          <PrivateRoute path="/user" component={Profile} />
-          <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          <PrivateRoute
+            path={process.env.REACT_APP_BASE_HREF + "/user"}
+            component={Profile}
+          />
+          <PrivateRoute
+            path={process.env.REACT_APP_BASE_HREF + "/update-profile"}
+            component={UpdateProfile}
+          />
 
           {/* Authentication Routes */}
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route
+            path={process.env.REACT_APP_BASE_HREF + "/signup"}
+            component={Signup}
+          />
+          <Route
+            path={process.env.REACT_APP_BASE_HREF + "/login"}
+            component={Login}
+          />
+          <Route
+            path={process.env.REACT_APP_BASE_HREF + "/forgot-password"}
+            component={ForgotPassword}
+          />
         </Switch>
       </AuthProvider>
     </Router>

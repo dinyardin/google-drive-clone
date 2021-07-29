@@ -41,7 +41,7 @@ export default function UpdateProfile() {
     Promise.all(promises)
       .then(() => {
         setMessage("Profile successfully updated");
-        history.push("/user");
+        history.push(process.env.REACT_APP_BASE_HREF + "/user");
       })
       .catch(() => {
         setError("Failed to update account");
@@ -94,7 +94,7 @@ export default function UpdateProfile() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Link to="/user">Cancel</Link>
+        <Link to={process.env.REACT_APP_BASE_HREF + "/user"}>Cancel</Link>
       </div>
     </CenteredContainer>
   );

@@ -46,12 +46,13 @@ export default function ForgotPassword() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/login">Log In</Link>
+            <Link to={process.env.REACT_APP_BASE_HREF + "/login"}>Log In</Link>
           </div>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+        Need an account?{" "}
+        <Link to={process.env.REACT_APP_BASE_HREF + "/signup"}>Sign Up</Link>
       </div>
     </CenteredContainer>
   );

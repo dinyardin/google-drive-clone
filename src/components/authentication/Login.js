@@ -20,7 +20,7 @@ export default function Login() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      history.push(process.env.REACT_APP_BASE_HREF + "/");
     } catch {
       setError("Failed to sign in");
     }
@@ -30,7 +30,7 @@ export default function Login() {
   async function handleSocialMediaLogin(type) {
     try {
       await loginWithSocialMedia(type);
-      history.push("/");
+      history.push(process.env.REACT_APP_BASE_HREF + "/");
     } catch (error) {
       setError("Failed to sign in");
     }
@@ -100,12 +100,15 @@ export default function Login() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password">Forgot password ?</Link>
+            <Link to={process.env.REACT_APP_BASE_HREF + "/forgot-password"}>
+              Forgot password ?
+            </Link>
           </div>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+        Need an account?{" "}
+        <Link to={process.env.REACT_APP_BASE_HREF + "/signup"}>Sign Up</Link>
       </div>
     </CenteredContainer>
   );
